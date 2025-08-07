@@ -3,11 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>wagiuroger productions - Videography, Photography & Graphic Design</title>
-
-    <link
-    rel="shortcut icon"
-    href="/img/mainthings/medium1 - wagiuroger_productions logoremake1.png"/>
+    <title>Wagiuroger Productions - Videografi & Fotografi Manado</title>
 
     <!-- Google Fonts - Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,16 +16,16 @@
     <style>
         /* CSS Custom Properties (Variables) */
         :root {
-            /* Tema Biru Monokromatik */
-            --background-color: #f0f4f8; /* Biru muda */
-            --surface-color: #ffffff;
-            --primary-color: #007bff; /* Biru terang */
-            --primary-variant-color: #0056b3;
-            --on-background-color: #333333;
-            --on-surface-color: #555555;
-            --text-color: #495057;
-            --shadow-color: rgba(0, 0, 0, 0.1);
-            --border-radius: 12px;
+            --background-color: #1a1a1a;
+            --surface-color: #2b2b2b;
+            --primary-color: #ffc107; /* Emas */
+            --primary-variant-color: #ffb300;
+            --on-background-color: #e0e0e0;
+            --on-surface-color: #ffffff;
+            --accent-color: #ff8f00; /* Oranye */
+            --text-color: #e0e0e0;
+            --shadow-color: rgba(0, 0, 0, 0.6);
+            --border-radius: 8px;
             --container-width: 1200px;
         }
 
@@ -44,11 +40,6 @@
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
-
-        html {
-  scroll-behavior: smooth;
-  /* jexx */
-}
 
         .container {
             max-width: var(--container-width);
@@ -93,15 +84,6 @@
             font-weight: 700;
             color: var(--primary-color);
             text-decoration: none;
-            /* Placeholder logo: Ganti dengan tag img jika Anda memiliki logo */
-            /* Contoh: <img src="URL_LOGO_ANDA" alt="Logo" style="height: 40px;"> */
-        }
-        
-        .logo-text {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-decoration: none;
         }
 
         nav a {
@@ -124,7 +106,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            overflow: hidden;
+            overflow: hidden; /* Penting untuk video background */
         }
         
         .video-background {
@@ -134,13 +116,13 @@
             width: 100%;
             height: 100%;
             z-index: -1;
+            overflow: hidden;
         }
-        
-        .video-background iframe {
+
+        .video-background video {
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            object-fit: cover;
+            object-fit: cover; /* Memastikan video menutupi seluruh area */
         }
         
         .video-overlay {
@@ -149,27 +131,26 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 123, 255, 0.6); /* Overlay biru */
+            background: linear-gradient(rgba(26, 26, 26, 0.8), rgba(26, 26, 26, 0.8));
             z-index: 1;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
-            padding: 0 20px;
         }
 
         .hero-content h1 {
             font-size: 64px;
             font-weight: 700;
             margin: 0;
-            color: var(--surface-color); /* Teks putih di atas video */
+            color: var(--primary-color);
         }
 
         .hero-content p {
             font-size: 20px;
             font-weight: 400;
-            color: var(--background-color); /* Teks biru muda */
+            color: var(--on-background-color);
             margin-top: 16px;
             max-width: 800px;
             margin-left: auto;
@@ -179,7 +160,7 @@
         .btn {
             display: inline-block;
             background-color: var(--primary-color);
-            color: var(--surface-color);
+            color: var(--background-color);
             padding: 14px 32px;
             margin-top: 32px;
             border-radius: 50px;
@@ -190,8 +171,8 @@
 
         .btn:hover {
             transform: translateY(-3px);
-            background-color: var(--primary-variant-color);
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+            background-color: var(--accent-color);
+            box-shadow: 0 5px 15px rgba(255, 143, 0, 0.3);
         }
 
         /* Section Title & Subtitle */
@@ -232,7 +213,7 @@
 
         .card-icon {
             font-size: 48px;
-            color: var(--primary-color);
+            color: var(--accent-color);
             margin-bottom: 16px;
         }
 
@@ -241,10 +222,6 @@
             font-weight: 600;
             color: var(--primary-color);
             margin: 0 0 12px 0;
-        }
-        
-        .review-card p {
-            font-style: italic;
         }
 
         /* Portfolio Section */
@@ -269,15 +246,16 @@
 
         .portfolio-item img, .portfolio-item iframe {
             width: 100%;
-            height: 250px;
+            height: 250px; /* Ukuran tetap untuk semua item */
             display: block;
             object-fit: cover;
         }
         
+        /* Gaya tambahan untuk video */
         .video-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%;
+            padding-bottom: 56.25%; /* Rasio aspek 16:9 */
             height: 0;
             overflow: hidden;
         }
@@ -303,7 +281,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(0, 123, 255, 0.8);
+            background: rgba(0, 0, 0, 0.7);
             color: white;
             padding: 16px;
             transform: translateY(100%);
@@ -317,7 +295,7 @@
         .portfolio-overlay h4 {
             margin: 0;
             font-size: 20px;
-            color: var(--surface-color);
+            color: var(--primary-color);
         }
 
         .portfolio-overlay p {
@@ -333,7 +311,7 @@
             padding: 12px 24px;
             border-radius: 50px;
             text-decoration: none;
-            color: var(--primary-color);
+            color: var(--on-surface-color);
             font-weight: 500;
             transition: transform 0.2s, background-color 0.2s;
             gap: 12px;
@@ -343,17 +321,17 @@
         .social-link:hover {
             transform: translateY(-2px);
             background-color: var(--primary-color);
-            color: var(--surface-color);
+            color: var(--background-color);
         }
 
         .social-link .fa-brands, .social-link .fa-solid {
             font-size: 24px;
-            color: var(--primary-color);
+            color: var(--accent-color);
             transition: color 0.2s;
         }
         
         .social-link:hover .fa-brands, .social-link:hover .fa-solid {
-            color: var(--surface-color);
+            color: var(--background-color);
         }
 
         .social-links-container {
@@ -370,7 +348,6 @@
             padding: 24px 0;
             text-align: center;
             margin-top: 40px;
-            color: var(--on-surface-color);
         }
         
         /* Media Queries untuk responsif */
@@ -395,15 +372,10 @@
     <!-- Header -->
     <header>
         <div class="container">
-            <!-- <a href="#" class="logo"> -->
-                <!-- Ganti teks di bawah ini dengan logo Anda, atau ganti tag <a> dengan tag <img> -->
-                <!-- <span class="logo-text">wagiuroger Productions</span> -->
-            <!-- </a> -->
-            <img src="/img/mainthings/BLACK - medium1 - wagiuroger_productions logoremake1.png" alt="" style="height: 5em;">
+            <a href="#" class="logo">Wagiuroger Productions</a>
             <nav>
                 <a href="#services">Layanan</a>
                 <a href="#portfolio">Portofolio</a>
-                <a href="#reviews">Testimoni</a>
                 <a href="#contact">Kontak</a>
             </nav>
         </div>
@@ -411,34 +383,17 @@
 
     <!-- Hero Section -->
     <section id="hero" class="hero">
-        <!-- YouTube Video Background -->
+        <!-- Video Background -->
         <div class="video-background">
-            <!-- 
-                Ganti URL di bawah ini dengan URL embed video YouTube Anda.
-                
-                Cara mendapatkan URL embed video looping:
-                1. Dapatkan ID video YouTube Anda (contoh: untuk https://www.youtube.com/watch?v=yF-y-4T2aWc, ID-nya adalah "yF-y-4T2aWc").
-                2. Buat URL iframe dengan parameter autoplay, mute, loop, dan playlist seperti di bawah ini.
-                3. Ganti "VIDEO_ID_ANDA" dengan ID video Anda.
-                
-                URL placeholder di bawah ini adalah video dari YouTube.
-            -->
-            <iframe src="https://www.youtube.com/embed/wQPrRlCjFz0?autoplay=1&mute=1&loop=1&si=snwrbuEXcb__6fOR&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" frameborder="0"
-            allow="autoplay; encrypted-media; picture-in-picture"
-            allowfullscreen></iframe>
-            <!-- <iframe
-                src="https://www.youtube.com/embed/yF-y-4T2aWc?autoplay=1&mute=1&loop=1&playlist=yF-y-4T2aWc&controls=0&playsinline=1"
-                frameborder="0"
-                allow="autoplay; encrypted-media; picture-in-picture"
-                allowfullscreen
-            ></iframe> -->
+            <!-- Ganti URL di bawah ini dengan URL video looping Anda sendiri -->
+            <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1542171549-3543666b6c7b?q=80&w=2000&auto=format&fit=crop">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-beautiful-camera-lens-flare-effect-3205-large.mp4" type="video/mp4">
+            </video>
         </div>
         <div class="video-overlay"></div>
 
         <div class="container hero-content">
-            <!-- Ganti teks di bawah ini dengan logo atau nama brand Anda. -->
-            <!-- <h1>Wagiuroger Productions</h1> -->
-            <img src="/img/mainthings/medium1 - wagiuroger_productions logoremake1.png" alt="" style="height: 12em;">
+            <h1>Wagiuroger Productions</h1>
             <p>Mengubah ide menjadi visual yang menakjubkan. Jasa videografi, fotografi & desain grafis di Manado.</p>
             <a href="#portfolio" class="btn">Lihat Portofolio</a>
         </div>
@@ -472,9 +427,8 @@
         </div>
     </section>
 
-    <!-- HIDDEN utk sementara -->
     <!-- Portfolio Section -->
-    <section id="portfolio" class="section" style="display: none;">
+    <section id="portfolio" class="section">
         <div class="container">
             <h2 class="section-title text-center">Portofolio Pilihan</h2>
             <p class="section-subtitle text-center">Lihat beberapa karya terbaik kami. Kami bangga dengan setiap detail yang kami hasilkan.</p>
@@ -482,7 +436,7 @@
                 <!-- Contoh Item Portofolio Foto -->
                 <a href="#" class="portfolio-item">
                     <!-- Ganti URL gambar di bawah ini dengan URL foto Anda -->
-                    <img src="https://images.unsplash.com/photo-1582210740924-a3f1244e311f?q=80&w=600&auto=format&fit=crop" alt="Desain Grafis Media Sosial">
+                    <img src="https://images.unsplash.com/photo-1542171549-3543666b6c7b?q=80&w=600&auto=format&fit=crop" alt="Sesi Fotografi Pernikahan">
                     <div class="portfolio-overlay">
                         <h4>Sesi Fotografi Pernikahan</h4>
                         <p>Mengabadikan kisah cinta dengan keindahan dan emosi yang tulus.</p>
@@ -503,10 +457,10 @@
 
                 <!-- Contoh Item Portofolio Foto -->
                 <a href="#" class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1542171549-3543666b6c7b?q=80&w=600&auto=format&fit=crop" alt="Sesi Fotografi Pernikahan">
+                    <img src="https://images.unsplash.com/photo-1582210740924-a3f1244e311f?q=80&w=600&auto=format&fit=crop" alt="Desain Grafis Media Sosial">
                     <div class="portfolio-overlay">
-                        <h4>Sesi Fotografi Pernikahan</h4>
-                        <p>Mengabadikan kisah cinta dengan keindahan dan emosi yang tulus.</p>
+                        <h4>Konten Media Sosial</h4>
+                        <p>Desain visual yang memikat untuk meningkatkan engagement online.</p>
                     </div>
                 </a>
                 
@@ -524,51 +478,6 @@
             </div>
         </div>
     </section>
-    
-    <!-- Client Reviews Section -->
-    <section id="reviews" class="section">
-        <div class="container">
-            <h2 class="section-title text-center">Testimoni Klien</h2>
-            <p class="section-subtitle text-center">Kami bangga telah bekerja sama dengan berbagai pihak untuk menghasilkan karya yang menginspirasi.</p>
-            <div class="card-grid">
-                <!-- Testimoni 1 -->
-                <div class="card review-card">
-                    <p>"Wagiuroger Productions berhasil mengabadikan setiap momen penting dalam acara sekolah kami dengan profesionalisme dan kreativitas. Hasilnya sangat memuaskan."</p>
-                    <div class="card-title">Paal Dua Adventist School</div>
-                </div>
-                <!-- Testimoni 2 -->
-                <div class="card review-card">
-                    <p>"Kolaborasi dengan tim Wagiuroger Productions sangat menyenangkan. Mereka mengerti kebutuhan kami dan mewujudkannya dalam visual yang memukau untuk setiap event BEM."</p>
-                    <div class="card-title">Badan Eksekutif Mahasiswa, Universitas Klabat</div>
-                </div>
-                <!-- Testimoni 3 -->
-                <div class="card review-card">
-                    <p>"Kerja keras dan kualitas tim Wagiuroger terlihat di setiap karya yang mereka berikan untuk acara-acara kami. Kami sangat merekomendasikan mereka!"</p>
-                    <div class="card-title">Unklab Adventist Youth, Universitas Klabat</div>
-                </div>
-                <!-- Testimoni 4 -->
-                <div class="card review-card">
-                    <p>"Luar biasa! Tim Wagiuroger menunjukkan dedikasi dan keahlian yang tinggi dalam mendokumentasikan program kami, memberikan hasil yang profesional dan sesuai standar instansi."</p>
-                    <div class="card-title">Program Inovasi Desa</div>
-                </div>
-                <!-- Testimoni 5 -->
-                <div class="card review-card">
-                    <p>"Wagiuroger Productions telah menjadi mitra tepercaya dalam mendokumentasikan kegiatan gereja. Setiap foto dan video mereka menceritakan kisah yang menyentuh hati."</p>
-                    <div class="card-title">Gereja Masehi Advent Hari Ketujuh Jemaat Paal Dua Manado</div>
-                </div>
-                <!-- Testimoni 6 -->
-                <div class="card review-card">
-                    <p>"Dokumentasi Global Youth Day dari Wagiuroger Productions sangat detail dan penuh semangat. Mereka berhasil menangkap atmosfer acara dengan sempurna."</p>
-                    <div class="card-title">Global Youth Day, GMAHK Konferens Manado dan Provinsi Maluku Utara</div>
-                </div>
-                <!-- Testimoni 7 -->
-                <div class="card review-card">
-                    <p>"Tim Wagiuroger menunjukkan profesionalisme yang tinggi dalam mengabadikan momen-momen penting di acara kami. Kami sangat puas dengan hasil akhirnya."</p>
-                    <div class="card-title">Gereja Masehi Advent Hari Ketujuh Uni Konferens Indonesia Kawasan Timur</div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Contact Section -->
     <section id="contact" class="section">
@@ -577,11 +486,11 @@
             <p class="section-subtitle">Siap menciptakan sesuatu yang luar biasa bersama? Hubungi kami melalui media sosial di bawah ini.</p>
             
             <div class="social-links-container">
-                <a href="https://wa.me/6285159556468?text=Halo%20admin,%20saya%20datang%20dari%20website%20wrpro.alphacast.id!" target="_blank" class="social-link">
+                <a href="https://wa.me/6281234567890" target="_blank" class="social-link">
                     <i class="fa-brands fa-whatsapp"></i>
                     <span>WhatsApp</span>
                 </a>
-                <!-- <a href="https://instagram.com/wagiuroger" target="_blank" class="social-link">
+                <a href="https://instagram.com/wagiuroger" target="_blank" class="social-link">
                     <i class="fa-brands fa-instagram"></i>
                     <span>Instagram</span>
                 </a>
@@ -592,8 +501,8 @@
                 <a href="https://www.tiktok.com/@wagiuroger" target="_blank" class="social-link">
                     <i class="fa-brands fa-tiktok"></i>
                     <span>TikTok</span>
-                </a> -->
-                <a href="https://www.youtube.com/@wagiuroger_productions8537" target="_blank" class="social-link">
+                </a>
+                <a href="https://www.youtube.com/@wagiuroger" target="_blank" class="social-link">
                     <i class="fa-brands fa-youtube"></i>
                     <span>YouTube</span>
                 </a>
@@ -604,7 +513,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 wagiuroger Productions. Semua hak dilindungi.</p>
+            <p>&copy; 2024 Wagiuroger Productions. Semua hak dilindungi.</p>
         </div>
     </footer>
 
