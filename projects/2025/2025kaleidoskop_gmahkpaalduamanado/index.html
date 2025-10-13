@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- START CUSTOMIZATION: Change the page title -->
+    <title>wagiuroger productions</title>
+    <!-- END CUSTOMIZATION -->
+
+    <!-- === FAVICON SECTION: Place your favicon links here === -->
+    <!-- START LOGO CUSTOMIZATION: Dynamic Favicons for Dark/Light Mode -->
+    <!-- PASTIKAN ANDA MEMILIKI DUA FILE LOGO BERBEDA (logo-terang.png dan logo-gelap.png) -->
+    
+    <!-- FAVICON FOR LIGHT MODE (Logo berwarna gelap, tampil di latar belakang terang browser) -->
+    <link rel="icon" type="image/png" href="/img/mainthings/BLACK - medium1 - wagiuroger_productions logoremake1.png" sizes="32x32" media="(prefers-color-scheme: light)">
+    
+    <!-- FAVICON FOR DARK MODE (Logo berwarna terang/putih, tampil di latar belakang gelap browser) -->
+    <!-- !!! SILAKAN GANTI PATH INI dengan file logo Anda yang disiapkan untuk Dark Mode -->
+    <link rel="icon" type="image/png" href="/img/mainthings/medium1 - wagiuroger_productions logoremake1.png" sizes="32x32" media="(prefers-color-scheme: dark)">
+    
+    <!-- Fallback Favicon (for older browsers, menggunakan versi Light Mode) -->
+    <link rel="icon" type="image/png" href="/img/mainthings/medium1 - wagiuroger_productions logoremake1.png" sizes="32x32">
+    <!-- END LOGO CUSTOMIZATION -->
+
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
+    <script>
+        // Set Tailwind to use 'class' strategy for dark mode (defaulting to dark mode styling)
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+
+    <style>
+        /* Base styles for the default DARK MODE (cool dark blue) */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Slate 900 */
+            color: #f8fafc; /* Slate 50 */
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Light mode overrides (applied when 'dark' class is present on <html>) */
+        .dark body {
+            background-color: #ffffff; /* White */
+            color: #1e293b; /* Slate 800 */
+        }
+        
+        /* General button/interactive element styling for material lift */
+        .interactive-element {
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .interactive-element:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            transform: translateY(-1px);
+        }
+        
+        /* Styling for the WhatsApp CTA */
+        .whatsapp-cta {
+            box-shadow: 0 4px 6px rgba(16, 185, 129, 0.4); /* Green shadow */
+        }
+        .whatsapp-cta:hover {
+            box-shadow: 0 8px 10px rgba(16, 185, 129, 0.6);
+        }
+
+        /* --- Custom Animation for Smooth Entry (Fade In Up) --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-in {
+            animation-name: fadeInUp;
+            animation-duration: 0.6s;
+            animation-timing-function: ease-out;
+            animation-fill-mode: both;
+        }
+        /* ----------------------------------------------------- */
+    </style>
+</head>
+<body class="antialiased bg-slate-900 dark:bg-white text-gray-100 dark:text-gray-900">
+
+    <!-- Header: Company Logo and Controls (Delay: 0.1s) -->
+    <header class="sticky top-0 z-20 bg-slate-900/90 dark:bg-white/90 backdrop-blur-sm shadow-lg border-b border-blue-900/50 dark:border-blue-200 animate-in" 
+            style="animation-delay: 0.1s;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            
+            <!-- Logo and Company Name -->
+            <a href="/" id="company_logo_link" class="flex items-center space-x-3 cursor-pointer">
+                <!-- START LOGO CUSTOMIZATION: Dynamic Header Logo (48x48 recommended) -->
+                <!-- Menambahkan data-logo-light dan data-logo-dark untuk switching JS -->
+                <!-- src awal harus sesuai dengan mode default Anda (yang saat ini 'light') -->
+                <img id="company_logo" 
+                     src="/img/mainthings/medium1 - wagiuroger_productions logoremake1.png" 
+                     alt="Company Logo" 
+                     class="h-12 w-64 rounded-full object-cover"
+                     data-logo-dark="/img/mainthings/medium1 - wagiuroger_productions logoremake1.png"
+                     data-logo-light="/img/mainthings/BLACK - medium1 - wagiuroger_productions logoremake1.png"
+                >
+                <!-- END LOGO CUSTOMIZATION -->
+                <!-- START CUSTOMIZATION: Change Company Name -->
+                <span class="text-xl font-bold text-gray-100 dark:text-gray-900 tracking-wider">
+                    wagiuroger productions
+                </span>
+                <!-- END CUSTOMIZATION -->
+            </a>
+
+            <!-- Mode and Language Toggles -->
+            <div class="flex items-center space-x-4">
+                <!-- Dark/Light Mode Switch -->
+                <button id="themeToggle" title="Toggle Theme" class="text-2xl text-blue-300 dark:text-yellow-500 hover:text-blue-400 dark:hover:text-yellow-600 p-2 rounded-full bg-slate-800 dark:bg-gray-100 transition interactive-element">
+                    <!-- Initial State is set by JS based on localStorage -->
+                    ☾
+                </button>
+                
+                <!-- Language Switch - NOW USING IMAGE TAG FOR CROSS-BROWSER CONSISTENCY -->
+                <button id="langToggle" title="Switch Language" class="p-2 rounded-full bg-slate-800 dark:bg-gray-100 transition interactive-element">
+                    <!-- Placeholder Images for flags (ensures consistent rendering) -->
+                    <img id="langFlag" src="https://placehold.co/24x24/0A3161/FFFFFF?text=US" alt="Language Flag" class="w-6 h-6 rounded-full object-cover">
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="w-full">
+        <!-- Full Width Banner Section (Responsive Height) (Delay: 0.3s) -->
+        <section class="w-full overflow-hidden shadow-2xl animate-in" style="animation-delay: 0.3s;">
+            <!-- START CUSTOMIZATION: Replace with your event banner image link (e.g., 1200x400) -->
+            <img id="eventBanner" src="./WhatsApp Image 2025-10-12 at 19.57.38.jpeg"
+                alt="Event Hero Banner" 
+                class="w-full h-auto object-cover" 
+                onerror="this.onerror=null; this.src='https://placehold.co/1200x400/27374D/DCE6F5?text=BANNER%20FAILED%20TO%20LOAD'" 
+            />
+            <!-- END CUSTOMIZATION -->
+            <!-- No overlay content as requested -->
+        </section>
+
+        <!-- Event Details Section (BILINGUAL CONTENT STARTS HERE) (Delay: 0.5s) -->
+        <section id="details" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 animate-in" style="animation-delay: 0.5s;">
+            
+            <!-- START CUSTOMIZATION: Event Date and Status -->
+            <div class="text-center mb-10">
+                <!-- English Date and Status -->
+                <p class="lang-switchable text-xl md:text-2xl text-blue-400 dark:text-blue-600 font-semibold mb-2" data-lang="en">
+                    October 18, 2025 | In-Person
+                </p>
+                <!-- Indonesian Date and Status -->
+                <p class="lang-switchable text-xl md:text-2xl text-blue-400 dark:text-blue-600 font-semibold mb-2 hidden" data-lang="id">
+                    18 Oktober 2025 | Tatap Muka
+                </p>
+            </div>
+            
+            <!-- 2. Event Title (H1) -->
+            <h1 class="text-4xl md:text-5xl font-extrabold text-blue-400 dark:text-blue-700 mb-6 border-b-2 border-blue-700 dark:border-blue-300 pb-3">
+                <!-- English Title -->
+                <span class="lang-switchable block" data-lang="en">2025 Kaleidoscope</span>
+                <!-- Indonesian Title -->
+                <span class="lang-switchable block hidden" data-lang="id">Kaleidoskop 2025</span>
+            </h1>
+            
+            <!-- 3. Event Long Description (P) -->
+            <div class="text-lg leading-relaxed space-y-4 text-gray-300 dark:text-gray-700">
+                
+                <!-- English Description Block -->
+                <div class="lang-switchable space-y-4" data-lang="en">
+                    <span class="block">
+                        <b>Good morning to all!👋</b>
+                        Thank you for the opportunity and trust given to me to once again handle the GMAHK Paal Dua Manado 2025 kaleidoscope video project. 🙏
+                        </span>
+                        
+                        <span class="block">
+                        📷 If any of you have <b>video documentation</b> or <b>photos</b> related to <b>all activities/memories from the GMAHK Paal Dua Manado since the church was founded until now</b>, please upload them to the Google Drive link provided at the bottom of this page.
+                        </span>
+                        
+                        <span class="block">
+                        📁 Inside that Google Drive, you'll find <b>several year folders</b>. If the year you're looking for isn't there, please add the year yourself via the link or contact me so I can add it for you.
+                        </span>
+                        
+                        <span class="block">
+                        📂 Once inside the year folder, please choose the <b>next folder that matches the activity/memory you're looking for</b> (example: Retreat Jemaat 2024 - 1 January 2024). If the folder you need isn't available, please add a new one with a title that is Short, Concise, and Clear, following the format in the example above. It's better if you can include the full date, but if only the month is available, that's okay too. This will help ensure all documentation is properly organized.
+                        </span>
+                        
+                        <span class="block">
+                        ⚠️ <b>Attention!</b> Please be very careful when creating, deleting, or moving folders and files so that documentation already uploaded by others <b>is not disturbed, disorganized, or deleted</b> 🙏
+                        </span>
+                        
+                        <span class="block">
+                        ⏰ The <b>deadline for submitting</b> video and photo documentation is <b>Wednesday, October 15, 2025</b>, as we need time to process everything before the start of the Sabbath 🙏
+                        </span>
+                        
+                        <span class="block">
+                        🆘 If you <b>need help or have any trouble</b> uploading your video/photo documentation to the Google Drive link, you can contact me directly on <b>Whatsapp</b> using the following format:
+                        <b>"Full Name - Documentation Year - Title of the Activity/Memory in the Documentation"</b>
+                        </span>
+                        
+                        <span class="block">
+                        That's all for the announcement. Thank more you for your cooperation, and God bless! 🙏
+                        <b>Roger Wagiu</b>
+                        </span>
+                </div>
+
+                <!-- Indonesian Description Block -->
+                <div class="lang-switchable space-y-4 hidden" data-lang="id">
+                    <span class="block">
+                        <b>Selamat pagi utk kita semua👋</b>
+                        Terima kasih atas kesempatan dan kepercayaan yang diberikan kepada saya untuk kembali menangani video kaleidoskop GMAHK Paal Dua Manado tahun 2025🙏
+                        </span>
+                        
+                        <span class="block">
+                        📷 Bagi saudara/i yang memiliki <b>dokumentasi video</b> maupun <b>foto</b> yang berhubungan dengan <b>seluruh kegiatan/kenangan dari GMAHK Paal Dua Manado sejak gereja didirikan sampai saat ini</b>, bisa dikirimkan di link Google Drive yang ada dibawah halaman ini.
+                        </span>
+                        
+                        <span class="block">
+                        📁 Di Google Drive tersebut sudah diberikan <b>beberapa folder tahun</b>. Jika tahun yang dicari tidak tersedia, mohon agar dapat ditambahkan tahun di link tersebut atau dapat menghubungi saya untuk menambahkan tahun nya.
+                        </span>
+                        
+                        <span class="block">
+                        📂 Dan di dalam folder tahun tersebut, bisa dipilih <b>folder selanjutnya yang berhubungan dengan kegiatan/kenangan yang Anda cari</b> (contoh: Retreat Jemaat 2024 - 1 Januari 2024), dan jika folder yang dicari tidak tersedia, mohon agar dapat ditambahkan judul kegiatan/kenangan di folder tahun tersebut dengan judul yang Singkat, Padat, dan Jelas dengan format seperti contoh diatas. Jika memungkinkan dengan tanggal bulan, lebih bagus, jika hanya bulan, tidak apa-apa. Agar semua dokumentasi dapat tersortir dengan baik.
+                        </span>
+                        
+                        <span class="block">
+                        ⚠️ <b>Perhatian!</b> Mohon agar saudara/i dapat berhati-hati ketika membuat folder, menghapus folder, dan menghapus file dokumentasi agar dokumentasi yang telah diupload dari yang lain <b>tidak akan terganggu, teracak atau sampai terhapus</b>🙏
+                        </span>
+                        
+                        <span class="block">
+                        ⏰ <b>Batas pengumpulan</b> dokumentasi video maupun foto hanya sampai hari <b>Rabu, 15 Oktober 2025</b>, dikarenakan kami butuh waktu untuk memproses semuanya sebelum pembukaan hari Sabat🙏
+                        </span>
+                        
+                        <span class="block">
+                        🆘 Jika saudara/i <b>butuh bantuan atau memiliki kendala</b> dalam mengupload dokumentasi video/foto di link Google Drive tersebut, Anda dapat menghubungi saya langsung di <b>Whatsapp</b> dengan format seperti berikut:
+                        *"Nama lengkap - Tahun dokumentasi - Judul Kegiatan/Kenangan dari dokumentasi tersebut"*
+                        </span>
+                        
+                        <span class="block">
+                        Sekian pengumuman dari saya, terima kasih atas kerjasamanya, Tuhan Memberkati🙏
+                        <b>Roger Wagiu</b>
+                        </span>
+                </div>
+            </div>
+            <!-- END CUSTOMIZATION: Event Date, Title, and Description -->
+
+            <!-- Event Action Buttons (remain outside language blocks as they are just links/CTAs) -->
+            <div class="mt-12 flex flex-col sm:flex-row gap-6">
+                <!-- START CUSTOMIZATION: Change button text and target link -->
+                <!-- Button 1: General Link (Updated with Icon) -->
+                <a href="#" class="flex-1 text-center flex items-center justify-center space-x-2 px-8 py-4 bg-blue-600 text-white text-lg font-bold rounded-xl hover:bg-blue-500 transition duration-300 shadow-lg transform hover:scale-[1.02] active:scale-[0.98] interactive-element">
+                    <!-- Calendar Icon (Placeholder Image - Blue) -->
+                    <img src="/img/companieslogo/jexx white - Google Drive Logo.png" alt="Calendar Icon" class="w-6 h-6 object-cover">
+                    <span>Google Drive Link</span>
+                </a>
+                
+                <!-- Button 2: WhatsApp CTA (Dynamic Link) -->
+                <a href="#" id="mainWhatsappButton" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="whatsapp-link flex-1 text-center whatsapp-cta flex items-center justify-center space-x-2 px-8 py-4 bg-green-600 text-white text-lg font-bold rounded-xl hover:bg-green-500 transition duration-300 shadow-lg transform hover:scale-[1.02] active:scale-[0.98] interactive-element">
+                    <!-- If you change the text, ensure it fits in both languages or make it bilingual too! -->
+                    <!-- WhatsApp Icon (Placeholder Image) -->
+                    <img src="/img/companieslogo/jexx white - jexx cropped - WA Logo.png" alt="WhatsApp Icon" class="w-6 h-6 object-cover">
+                    <span>Contact Us via WhatsApp</span>
+                </a>
+                <!-- END CUSTOMIZATION -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer: Company Details and WhatsApp CTA (Delay: 0.7s) -->
+    <footer class="bg-slate-900/90 dark:bg-gray-100/90 border-t border-blue-900/50 dark:border-blue-200 mt-16 pt-10 pb-6 animate-in" style="animation-delay: 0.7s;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Footer Column 1: Logo and Name -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <!-- START LOGO CUSTOMIZATION: Dynamic Footer Logo -->
+                        <!-- Menambahkan id dan data attributes untuk switching JS -->
+                        <img id="footer_logo" 
+                            src="/img/mainthings/medium1 - wagiuroger_productions logoremake1.png" 
+                            alt="Company Logo" 
+                            class="h-12 w-64 rounded-full object-cover"
+                            data-logo-dark="/img/mainthings/medium1 - wagiuroger_productions logoremake1.png"
+                            data-logo-light="/img/mainthings/BLACK - medium1 - wagiuroger_productions logoremake1.png"
+                        >
+                        <!-- END LOGO CUSTOMIZATION -->
+                        <p class="text-xl font-bold text-gray-100 dark:text-gray-900">wagiuroger productions</p>
+                    </div>
+                    <p class="text-sm text-gray-400 dark:text-gray-600">Turning ideas into stunning visuals. Videography, photography, and graphic design services in Manado.</p>
+                </div>
+
+                <!-- Footer Column 2: Contact Details (with Hyperlinks) -->
+                <div class="space-y-3">
+                    <p class="text-md font-semibold text-blue-400 dark:text-blue-700 uppercase tracking-wider mb-2">Contact</p>
+                    <p class="text-sm text-gray-300 dark:text-gray-700">
+                        <span class="font-medium block">Address:</span> 
+                        <a href="https://goo.gl/maps/EJrUVrc1SbLcQ2UW6" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 dark:hover:text-blue-500 underline transition">
+                            (alamat baru) Reko Bawah, Kolongan, Kec. Kalawat, Kabupaten Minahasa Utara, Sulawesi Utara
+                        </a>
+                    </p>
+                    <!-- Phone number as a WhatsApp Link -->
+                    <p class="text-sm text-gray-300 dark:text-gray-700">
+                        <span class="font-medium block">Phone/WA:</span> 
+                        <a href="#" class="whatsapp-link hover:text-green-400 underline transition">+62 877-0910-6468</a>
+                    </p>
+                    <!-- Email as a mailto Link -->
+                    <p class="text-sm text-gray-300 dark:text-gray-700">
+                        <span class="font-medium block">Email:</span> 
+                        <a href="mailto:davidrogerwagiu@gmail.com" class="hover:text-blue-400 dark:hover:text-blue-500 underline transition">davidrogerwagiu@gmail.com</a>
+                    </p>
+                </div>
+
+                <!-- Footer Column 3: WhatsApp CTA (Dynamic Link) -->
+                <div class="flex flex-col items-start md:items-end">
+                    <p class="text-md font-semibold text-blue-400 dark:text-blue-700 uppercase tracking-wider mb-3 md:mb-4">Quick Help</p>
+                    <a href="#" id="footerWhatsappButton"
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        class="whatsapp-link whatsapp-cta flex items-center justify-center space-x-2 px-6 py-3 bg-green-600 text-white font-bold rounded-xl hover:bg-green-500 transition duration-300 w-full md:w-auto interactive-element">
+                        <!-- WhatsApp Icon (Placeholder Image) -->
+                        <img src="/img/companieslogo/jexx white - WA Logo.png" alt="WhatsApp Icon" class="w-6 h-6 object-cover">
+                        <span>Chat via WhatsApp</span>
+                    </a>
+                    <p class="text-xs text-gray-500 dark:text-gray-500 mt-2">Available 24/7 for urgent inquiries.</p>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-4 border-t border-blue-900/50 dark:border-blue-200 text-center">
+                <!-- START CUSTOMIZATION: Change Copyright year/name -->
+                <p class="text-xs text-gray-500 dark:text-gray-500">&copy; 2025 wagiuroger productions. All Rights Reserved.</p>
+                <!-- END CUSTOMIZATION -->
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const html = document.documentElement;
+            const themeToggle = document.getElementById('themeToggle');
+            const langToggle = document.getElementById('langToggle');
+            const langFlag = document.getElementById('langFlag');
+            const companyLogo = document.getElementById('company_logo');
+            const footerLogo = document.getElementById('footer_logo');
+            
+            // Ambil path logo dari data attribute (pastikan path ini benar!)
+            const logoLight = companyLogo.getAttribute('data-logo-light');
+            const logoDark = companyLogo.getAttribute('data-logo-dark');
+            
+            // START CUSTOMIZATION: Update Phone Number and Base Message
+            const WA_NUMBER = '6287709106468';
+            const BASE_MESSAGE = encodeURIComponent("Hello! I'm from js.alphacast.id's information page: ");
+            // END CUSTOMIZATION
+
+            // --- Flag Image Sources (UPDATED to local paths) ---
+            // PASTIKAN FILE-FILE INI ADA DI FOLDER '/flags/' ANDA!
+            const US_FLAG_SRC = '/flags/USA.webp'; // Sesuai permintaan Anda
+            const ID_FLAG_SRC = '/flags/ID.webp'; // Diperbarui ke jalur lokal
+            // ----------------------------------------------------
+
+            // --- Theme Toggler Logic ---
+            // START CUSTOMIZATION (DEFAULT THEME): Ganti 'dark' ke 'light' atau sebaliknya. Saat ini 'light'.
+            let currentTheme = localStorage.getItem('theme') || 'light';
+            // END CUSTOMIZATION
+
+            // Fungsi untuk mengganti sumber gambar logo di header dan footer
+            function updateLogos(isLightMode) {
+                // isLightMode = true berarti halaman berlatar terang (mode light)
+                // Kita harus menggunakan logo yang kontras (gelap)
+                const logoSrc = isLightMode ? logoLight : logoDark;
+                
+                if (companyLogo) companyLogo.src = logoSrc;
+                if (footerLogo) footerLogo.src = logoSrc;
+            }
+
+            // Inisialisasi tema saat memuat halaman
+            function initializeTheme() {
+                const isLight = currentTheme === 'light';
+                if (isLight) {
+                    html.classList.add('dark'); // 'dark' class pada <html> memicu Light Mode styling di Tailwind
+                    themeToggle.textContent = '☀︎';
+                } else {
+                    html.classList.remove('dark'); // Tanpa 'dark' class, ini Dark Mode
+                    themeToggle.textContent = '☾';
+                }
+                updateLogos(isLight);
+            }
+
+
+            themeToggle.addEventListener('click', () => {
+                const isLight = html.classList.toggle('dark');
+                if (isLight) {
+                    // Berpindah ke Light Mode
+                    currentTheme = 'light';
+                    localStorage.setItem('theme', 'light');
+                    themeToggle.textContent = '☀︎';
+                } else {
+                    // Berpindah ke Dark Mode
+                    currentTheme = 'dark';
+                    localStorage.setItem('theme', 'dark');
+                    themeToggle.textContent = '☾';
+                }
+                updateLogos(isLight);
+            });
+
+            // Panggil inisialisasi tema
+            initializeTheme();
+
+            // --- Language Toggler Logic ---
+            // START CUSTOMIZATION (DEFAULT LANGUAGE): Change 'en' to 'id' if you want the page to default to Bahasa Indonesia on first load.
+            let currentLang = localStorage.getItem('lang') || 'en'; // Track current language: 'en' or 'id'
+            // END CUSTOMIZATION
+            
+            function toggleLanguageDisplay() {
+                // 1. Update Flag Image Source
+                langFlag.src = (currentLang === 'en') ? US_FLAG_SRC : ID_FLAG_SRC;
+
+                // 2. Update Content Visibility
+                document.querySelectorAll('.lang-switchable').forEach(el => {
+                    const elLang = el.getAttribute('data-lang');
+                    if (elLang === currentLang) {
+                        el.classList.remove('hidden');
+                    } else {
+                        el.classList.add('hidden');
+                    }
+                });
+            }
+
+            langToggle.addEventListener('click', () => {
+                // 1. Change State and Storage
+                currentLang = (currentLang === 'en') ? 'id' : 'en';
+                localStorage.setItem('lang', currentLang);
+                
+                // 2. Update UI
+                toggleLanguageDisplay();
+            });
+
+            // Initialize language setting on load
+            toggleLanguageDisplay();
+
+            // --- Dynamic WhatsApp Link Logic ---
+            function updateWhatsappLinks() {
+                const pageLink = encodeURIComponent(window.location.href);
+                const waUrl = `https://wa.me/${WA_NUMBER}?text=${BASE_MESSAGE}${pageLink}`;
+                
+                // Select all elements with the whatsapp-link class
+                document.querySelectorAll('.whatsapp-link').forEach(link => {
+                    link.href = waUrl;
+                });
+            }
+
+            // Run link update immediately
+            updateWhatsappLinks();
+        });
+    </script>
+</body>
+</html>
