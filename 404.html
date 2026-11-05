@@ -1,0 +1,370 @@
+<!-- ---
+layout: null
+--- -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Halaman Tidak Ditemukan | alphacast.id</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-main: #0B0F19;
+            --bg-card: #151D30;
+            --accent-primary: #3B82F6;
+            --accent-glow: rgba(59, 130, 246, 0.15);
+            --text-main: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --border-color: rgba(255, 255, 255, 0.08);
+            
+            /* Warna Khusus WhatsApp */
+            --wa-color: #16a34a;
+            --wa-hover: #15803d;
+            --wa-glow: rgba(22, 163, 74, 0.25);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* PERBAIKAN: Padding Top diperbesar menjadi 130px agar tidak tertabrak Header Fixed */
+        .main-error-wrapper {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 130px 24px 60px; 
+            position: relative;
+        }
+
+        .main-error-wrapper::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--accent-primary);
+            filter: blur(150px);
+            opacity: 0.12;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.97);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .error-container {
+            max-width: 580px;
+            width: 100%;
+            text-align: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 48px 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .error-code {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 110px;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--text-main);
+            background: linear-gradient(180deg, #FFFFFF 30%, #3B82F6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+        }
+
+        .lang-grid {
+            text-align: left;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            margin-bottom: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .lang-grid::-webkit-scrollbar { width: 6px; }
+        .lang-grid::-webkit-scrollbar-track { background: transparent; }
+        .lang-grid::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .lang-item {
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--text-muted);
+            border-left: 2px solid rgba(255, 255, 255, 0.1);
+            padding-left: 10px;
+        }
+
+        .lang-item strong {
+            color: var(--text-main);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .btn-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        @media (min-width: 480px) {
+            .btn-group { flex-direction: row; }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            flex: 1; /* Agar membagi lebar proporsional */
+        }
+
+        .btn span {
+            display: inline-block;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .btn.text-fade-out span {
+            opacity: 0;
+            transform: translateY(-4px);
+        }
+
+        /* Styling Tombol CTA WhatsApp Utama */
+        .btn-whatsapp {
+            background-color: var(--wa-color);
+            color: #FFFFFF;
+            box-shadow: 0 4px 14px var(--wa-glow);
+            border: none;
+            width: 100%;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: var(--wa-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(22, 163, 74, 0.4);
+        }
+
+        .btn-primary {
+            background-color: var(--accent-primary);
+            color: #FFFFFF;
+            box-shadow: 0 4px 14px var(--accent-glow);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #2563EB;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.04);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- {% include header.html %} -->
+
+    <main class="main-error-wrapper">
+        <div class="error-container">
+            <div class="error-code">404</div>
+
+            <!-- Daftar Bahasa yang Diperbarui -->
+            <div class="lang-grid">
+                <div class="lang-item">
+                    <strong>ID • Indonesia</strong>
+                    Halaman tidak ditemukan. Silakan periksa kembali URL Anda.
+                </div>
+                <div class="lang-item">
+                    <strong>EN • English</strong>
+                    Page not found. Please check your URL layout or return home.
+                </div>
+                <div class="lang-item">
+                    <strong>JA • 日本語</strong>
+                    ページが見つかりません。URLを確認するか、ホームに戻ってください。
+                </div>
+                <div class="lang-item">
+                    <strong>KO • 한국어</strong>
+                    페이지를 찾을 수 없습니다. URL을 확인하거나 홈으로 돌아가세요.
+                </div>
+                <div class="lang-item">
+                    <strong>TW • 繁體中文</strong>
+                    找不到頁面。請檢查您的網址或返回首頁。
+                </div>
+                <div class="lang-item">
+                    <strong>ZH • 简体中文</strong>
+                    未找到该页面。请检查您的网址或返回首页。
+                </div>
+                <div class="lang-item">
+                    <strong>NL • Nederlands</strong>
+                    Pagina niet gevonden. Controleer de URL of ga terug naar de homepagina.
+                </div>
+                <div class="lang-item">
+                    <strong>HI • हिन्दी</strong>
+                    पृष्ठ नहीं मिला। कृपया अपना URL जांचें या होम पर वापस जाएं।
+                </div>
+                <div class="lang-item">
+                    <strong>FR • Français</strong>
+                    Page non trouvée. Veuillez vérifier votre URL ou retourner à l'accueil.
+                </div>
+                <div class="lang-item">
+                    <strong>DE • Deutsch</strong>
+                    Seite nicht gefunden. Bitte überprüfen Sie Ihre URL oder kehren Sie zur Startseite zurück.
+                </div>
+                <div class="lang-item">
+                    <strong>TL • Tagalog</strong>
+                    Hindi nahanap ang pahina. Pakisuri ang iyong URL o bumalik sa home.
+                </div>
+            </div>
+
+            <!-- Susunan Tombol CTA Terbaru -->
+            <div class="btn-wrapper">
+                <!-- Tombol WhatsApp Paling Atas (Primary Focus) -->
+                <a href="#" id="wa-report-btn" target="_blank" class="btn btn-whatsapp">
+                    <i class="fa-brands fa-whatsapp text-xl mr-2"></i>
+                    <span>Lapor Halaman Tidak Ditemukan</span>
+                </a>
+                
+                <!-- Dua Tombol Navigasi Standard di Bawahnya -->
+                <div class="btn-group">
+                    <a href="/" class="btn btn-primary" id="btn-home-loop">
+                        <span>Kembali Ke Halaman Utama</span>
+                    </a>
+                    <button onclick="window.history.back()" class="btn btn-secondary" id="btn-back-loop">
+                        <span>Kembali Ke Halaman Sebelumnya</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- {% include footer.html %} -->
+
+    <script>
+        // Eksekusi Logika WhatsApp URL Grabber
+        document.addEventListener("DOMContentLoaded", function() {
+            const waBtn = document.getElementById('wa-report-btn');
+            // Menangkap dan mengenkripsi URL halaman error saat ini secara otomatis
+            const encodedUrl = encodeURIComponent(window.location.href);
+            // Menyusun format pesan WhatsApp yang memuat URL
+            const waMessage = `Halo admin alphacast.id, saya ingin melapor bahwa halaman ini tidak ditemukan (${encodedUrl})`;
+            
+            waBtn.href = `https://wa.me/6285159556468?text=${waMessage}`;
+        });
+
+        // Array translasi 3 tombol yang telah dicocokkan dengan urutan bahasa Grid
+        const loopTranslations = [
+            /* 0. ID */ { home: "Kembali Ke Halaman Utama", back: "Kembali Ke Halaman Sebelumnya", wa: "Lapor Halaman Tidak Ditemukan" },
+            /* 1. EN */ { home: "Return To Main Page", back: "Back To Previous Page", wa: "Report Page Not Found" },
+            /* 2. JA */ { home: "メインページに戻る", back: "前のページに戻る", wa: "ページが見つからないと報告" },
+            /* 3. KO */ { home: "메인 페이지로 돌아가기", back: "이전 페이지로 돌아가기", wa: "페이지 없음 신고하기" },
+            /* 4. TW */ { home: "返回首頁", back: "返回上一頁", wa: "報告頁面未找到" },
+            /* 5. ZH */ { home: "返回网站首页", back: "返回上一页", wa: "报告页面未找到" },
+            /* 6. NL */ { home: "Terug Naar Hoofdpagina", back: "Terug Naar Vorige Pagina", wa: "Meld Pagina Niet Gevonden" },
+            /* 7. HI */ { home: "मुख्य पृष्ठ पर लौटें", back: "पिछले पृष्ठ पर लौटें", wa: "त्रुटि पृष्ठ की रिपोर्ट करें" },
+            /* 8. FR */ { home: "Retour À L'accueil", back: "Retour À La Page Précédente", wa: "Signaler Page Introuvable" },
+            /* 9. DE */ { home: "Zurück Zur Startseite", back: "Zurück Zur Letzten Seite", wa: "Fehlerhafte Seite Melden" },
+            /* 10. TL */{ home: "Bumalik Sa Home", back: "Bumalik Sa Nakaraang Pahina", wa: "Iulat Ang Sirang Link" }
+        ];
+
+        let currentLangIndex = 0;
+        const targetBtnWa = document.getElementById('wa-report-btn');
+        const targetBtnHome = document.getElementById('btn-home-loop');
+        const targetBtnBack = document.getElementById('btn-back-loop');
+
+        setInterval(() => {
+            // Step 1: Tambahkan class CSS fade-out ke ketiga tombol
+            targetBtnWa.classList.add('text-fade-out');
+            targetBtnHome.classList.add('text-fade-out');
+            targetBtnBack.classList.add('text-fade-out');
+
+            setTimeout(() => {
+                currentLangIndex = (currentLangIndex + 1) % loopTranslations.length;
+                
+                // Step 2: Ubah isi teks teks di dalam span masing-masing tombol
+                targetBtnWa.querySelector('span').textContent = loopTranslations[currentLangIndex].wa;
+                targetBtnHome.querySelector('span').textContent = loopTranslations[currentLangIndex].home;
+                targetBtnBack.querySelector('span').textContent = loopTranslations[currentLangIndex].back;
+
+                // Step 3: Fade In kembali
+                targetBtnWa.classList.remove('text-fade-out');
+                targetBtnHome.classList.remove('text-fade-out');
+                targetBtnBack.classList.remove('text-fade-out');
+            }, 300);
+
+        }, 4000);
+    </script>
+
+</body>
+</html>
